@@ -145,30 +145,19 @@ from (
 order by user_count desc;
 
 
-# 3. Diving Deeper
-# Identifying the most used types of programs by “heavy users”
+# 3. Identifying the most used types of programs by each user segment
 select 
-    'social_media' as app_type,
-    round(avg(Social_Media_Usage_Hours), 2) as avg_hours
+    case 
+        when Daily_Screen_Time_Hours >= 8 then 'heavy_user'
+        when Daily_Screen_Time_Hours >= 4 then 'medium_user'
+        when Daily_Screen_Time_Hours >= 1 then 'light_user'
+        else 'minimal_user'
+    end as user_category,
+   	round(avg(Social_Media_Usage_Hours), 2) as avg_social_hours,
+   	round(avg(Productivity_App_Usage_Hours), 2) as avg_prod_hours,
+   	round(avg(Gaming_App_Usage_Hours), 2) as avg_game_hours
 from mobile_usage
-where Daily_Screen_Time_Hours >= 8 # Heavy user indicator
-
-union all
-
-select 
-    'productivity' as app_type,
-    round(avg(Productivity_App_Usage_Hours), 2) as avg_hours
-from mobile_usage
-where Daily_Screen_Time_Hours >= 8
-
-union all
-
-select 
-    'gaming' as app_type,
-    round(avg(Gaming_App_Usage_Hours), 2) as avg_hours
-from mobile_usage
-where Daily_Screen_Time_Hours >= 8
-order by avg_hours desc;
+group by user_category;
 
 #-----------------------------------------------------------
 
