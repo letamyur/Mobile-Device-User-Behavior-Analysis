@@ -47,7 +47,7 @@ This project analyzes smartphone usage patterns to uncover behavioral insights t
 ### 3. User Segmentation by Usage Intensity
 **User Segmentation:** Grouping users by daily screen time into different segments: "Heavy user", "Medum user" "Light user" and "Minor user"
 **Uer Segment Percentage:** Evaluating the proportion of users within each segment.
-**Deeper Analysis:** Identifying the most used types of programs by "Heavy users" 
+**Preferences Identification:** Identifying the most used types of programs by each user segment
 
 ## Key Insigts
 
